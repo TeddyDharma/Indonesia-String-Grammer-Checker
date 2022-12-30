@@ -1,144 +1,129 @@
 import streamlit as st
 
-pola_kalimat = [["K", "S P O"], ["K", "S P O Ket"], ["K", "S P O pel"], ["K", "S P ket"], ["K", "S P"], ["K", "S P pel"]]
+pola_kalimat = [["K", "SPO"], ["K", "SP"], ["K", "SPOpel"], ["K", "SPOket"], ["K", "SPket"], ["K", "SPpel"]]
 
-rules = [["S", "Noun", "Pronoun", "PropNoun", "NounAdj", "PronounNoun", "NounAdv", "NounPronoun", "NounPropNoun", "NumNoun"],
-         ["P", "Verb", "VerbAdj", "VerbAdv"],
-         ["O", "Noun", "Pronoun", "PropNoun", "NounAdj", "PronounNoun", "NounAdv", "NounPronoun", "NounPropNoun", "NumNoun"],
-         ["pel", "AdvVerb", "AdvAdj"],
-         ["Ket", "PrepPronoun", "PrepPropNoun", "PrepNoun", "PrepAdj"]]
+rules = [
+    ["S", "Noun", "Pronoun", "PropNoun", "NounAdj", "PronounNoun", "NounAdv", "NounPronoun", "NounPropNoun", "NumNoun"],
+    ["P", "Verb", "VerbAdj"],
+    ["O", "Noun", "Pronoun", "PropNoun", "NounAdj", "PronounNoun", "NounAdv", "NounPronoun", "NounPropNoun", "NumNoun"],
+    ["pel", "AdvVerb", "AdvAdj"],
+    ["Ket", "PrepPronoun", "PrepPropNoun", "PrepNoun", "PrepAdj"]]
 
-noun = "dia | kakek | ayah | makanan | gaun | biru | orang | kursi | tua | sepeda | meja | martabak | kampung | sepatu | murid | bapak | ibu | kucing | baju | merah | pak | guru | hunian | doni | lurah | pencuri | polisi | tante | keripik | ikan | pasar | dia | pekerjaan | sultan | kampung | adi | sekolah | putri | mobil | adik | payung | hitam | kakak | karyawan | masakan | anak | sepeda | motor | rumah | andi | otak | jihan | kematian | sedih | fasilitas | umum | kemarin | garam | roti | sifat | david | pohon | lampu | kota | sikap | juara | kabar | mereka | doni | tembok | dapur | tahun | usul | rina | kue | mungkin | kenyataan | dina | mata | agus | mahasiswa | nanda | korban | bencana | alam | uang | saputra | kinan | tugas | beban | ari | gusde | kelas | gereja"
-verb ="membawa | menggunakan | adalah | meduduki | ditaruh | membeli | berkeliaran | memperkenalkan | memberikan | menghukum | menangkap | membuat | dikenal | mendapatkan |menjadi | memiliki | mendengar | berprilaku | mewarnai | menolak | menyatakan | dibuat | menerima | dihukum | lulus | menjawab | mengungsi | mencuri | berlari | tidur | meminjam | mengerjakan | mengangkat | mengantuk"
-adj ="adj | baik | tua | rusak | bulat | manis | liar | baru | nakal | termuda | lihai | pedas | asin | dalam | kaya | mewah | cerdas | baik | terenak | mahal | umum | luas | kokoh | sakit | indah | kecewa | ketus | senang |panik | ramah | muda | sepi | tegas | semanis | setegar | berat | ragu | secepat | tenang | banyak | semampu | kuat"
-prep ="Prep | ke | pada | dalam | di | dari | dekat | ketika | sehingga | yang | karena | sejak | dengan"
-adv ="adv | sangat | tidak | masih | sekali | rasa | diam | sedang"
+noun = "Noun | dia | kakek| ayah | makanan | gaun| biru | orang | kursi | tua| sepeda | meja | martabak | kampung | sepatu| murid | bapak | ibu | kucing | baju | merah | pak | guru | hunian | doni | lurah | pencuri | polisi | tante | keripik | ikan | pasar | dia | pekerjaan | sultan | kampung | adil | sekolah | putri | mobil | adik | payung | hitam | kakak | karyawan | masakan | anak | sepeda | motor | rumah | andi | otak | jihan | kematian | sedih | fasilitas| umum | kemarin | garam | roti | sifat | david | pohon | lampu | kota | sikap | juara | kabar | mereka | doni | tembok | dapur | tahun | usul | rina | kue | mungkin | kenyataan | dina | mata | agus | mahasiswa | nanda | korban | bencana | alam | uang | saputra | kinan | tugas | beban | ari | gusde | kelas | gereja "
+verb = "Verb | membawa | menggunakan | adalah | meduduki | ditaruh | membeli | berkeliaran | memperkenalkan | memberikan | menghukum | menangkap | membuat | dikenal | mendapatkan | menjadi | memiliki | mendengar | berprilaku | mewarnai | menolak | menyatakan | dibuat | menerima | dihukum | lulus | menjawab | mengungsi| mencuri| berlari| tidur| meminjam| mengerjakan| mengangkat| mengantuk"
+adj = "Adj | baik | tua | rusak | bulat| manis | liar | baru | nakal | termuda | lihai | pedas | asin | dalam| kaya | mewah | cerdas | baik | terenak | mahal | umum | luas| kokoh | sakit | indah | kecewa | ketus | senang | panik | ramah | muda | sepi | tegas | semanis | setegar | berat | ragu | secepat | tenang| banyak| semampu| kuat"
+prep = "Prep | ke | pada | dalam | di| dari | dekat | ketika | sehingga| yang | karena | sejak | dengan"
+adv = "Adv | sangat | tidak | masih| sekali | rasa | diam | sedang"
 
 data = []
-data.append(noun.split(" | "))
-data.append(verb.split(" | "))
-data.append(adj.split(" | "))
-data.append(prep.split(" | "))
-data.append(adv.split(" | "))
+def appendData():
+    data.append(noun.split(" | "))
+    data.append(verb.split(" | "))
+    data.append(adj.split(" | "))
+    data.append(prep.split(" | "))
+    data.append(adv.split(" | "))
 
-def array(n : int) -> list:
-  list1 = [ ]
-  for i in range(n, 0, -1):
-    list2 = [ ]
-    for j in range(i):
-      list2.append("")
-    list1.append(list2)
-  return list1
 
-def concat_str(str1 : str, str2 : str) -> str:
-  str3 = ""
-  for i in str1:
-    for j in str2:
-      str3 = str3 + (i + j)
-  return str3
+def TableFilling(lenStr: int) -> list:
+    Table = [] #make table filling
+    for i in range(lenStr, 0, -1):
+        temp = []
+        for j in range(i):
+            temp.append("")
+        Table.append(temp)
+    return Table
 
-def unique_str(str1 : str) -> str:
-  str3 = ""
-  for i in str1:
-    if i not in str3:
-        str3 = str3 + i
-  return str3
+def RemoveDuplicate(str1: str) -> str:
+    final_pola_kalimat = ""
+    for i in str1:
+        if i not in final_pola_kalimat:
+            final_pola_kalimat += i
+    return final_pola_kalimat
 
-def converting(str1 : str, list1 : list) -> str:
-  str2 = ""
-  for i in range(len(list1[:])):
-    for j in list1[i][1:]:
-      if j in str1:
-        str2 = str2 + list1[i][0]
-  return unique_str(str2)
 
-def initiate(list1 : list, list2 : list, array : list):
-  for i in range(0, len(list1)):
-    for j in range(len(list2)):
-      for k in list2[j][1:]:
-        if k in list1[i]:
-          array[i][0] = list2[j][0]
-  return array
+def convertToSPO(str1: str, RulesSentence: list) -> str: #alba, rules alba berupa list
+    ConvertResult = ""
+    for i in range(len(RulesSentence[:])):
+        for j in RulesSentence[i][1:]:
+            if j in str1:
+                ConvertResult += RulesSentence[i][0] #str2 itu hasilnya berupa penggabungan pola kalimat S, P, 0 kemudian di cek ada gak duplikasi di bagian pola kalimat pakkek fungsi unique_str
+    return RemoveDuplicate(ConvertResult)
 
-def calculate(y : int, x : int, list1 : list):
-  x -= 1
-  y -= 1
-  i = 0
-  j = y + 1
-  k = x - 1
-  while(i < x):
-    list1[y][x] = list1[y][i] + list1[j][k]
-    i += 1
-    j += 1
-    k -= 1
 
-def progressing(list1 : list, x : int):
-  leng = x
-  for i in range(1, x+1):
-    for j in range(1, leng+1):
-      calculate(j, i, list1)
-    leng -= 1
-  leng = x
-  for i in range(0, x):
-    for j in range(1, leng):
-      alba = list1[i][j]
-      alba = converting(alba, rules)
-      list1[i][j] = alba
-    leng -= 1
+def DataMatching(list1: list, list2: list, array: list): # match str user to list of data # test = DataMatching(strinx, data, ar)
+    for i in range(0, len(list1)):
+        for j in range(len(list2)):
+            for k in list2[j][1:]:
+                if k in list1[i]:
+                    array[i][0] = list2[j][0]
+    return array
 
-def progressing2(list1 : list, x : int):
-  leng = x
-  for i in range(0, x):
-    for j in range(1, leng):
-      alba = list1[i][j]
-      alba = converting(alba, pola_kalimat)
-      list1[i][j] = alba
-    leng -= 1
-  
-  for i in range(0, x):
-    print(list1[i][:])
 
-def cek_baku(list1 : list) -> int:
-  if "K" in list1[0][-1]:
-    return 1
-  elif "K" not in list1[0][-1]:
-    return 0
+def CountIndex(y: int, x: int, list1: list):
+    x -= 1
+    y -= 1
+    i = 0
+    j = y + 1
+    k = x - 1
+    while (i < x):
+        list1[y][x] = list1[y][i] + list1[j][k]
+        i += 1
+        j += 1
+        k -= 1
 
-def progressing_x(list2 : list):
-  count = 0
-  for list1 in list2:
-    tabel = array(len(list1))
-    initiate(data, list1, tabel)
-    progressing(tabel, len(tabel[:]))
-    list1.append(cek_baku(tabel))
-    for i in range(len(list1)):
-      for x, j in enumerate(list1):
-        if j == 1:
-          count += 1
-  print(count)
+
+def progressingSPO(list1: list, x: int): #  progressingSPO(test, len(strinx))
+    leng = x
+    for i in range(1, x + 1):
+        for j in range(1, leng + 1):
+            CountIndex(j, i, list1)
+        leng -= 1
+    leng = x
+    for i in range(0, x):
+        for j in range(1, leng):
+            alba = list1[i][j]
+            alba = convertToSPO(alba, rules)
+            list1[i][j] = alba
+        leng -= 1
+
+
+def progressingPolaKalimat(list1: list, x: int):
+    leng = x
+    for i in range(0, x):
+        for j in range(1, leng):
+            alba = list1[i][j]
+            alba = convertToSPO(alba, pola_kalimat)
+            list1[i][j] = alba
+        leng -= 1
+
+    for i in range(0, x):
+        print(list1[i][:])
+
+
+def finalCheck(final_pola_kalimat: list) -> bool:
+    if "K" in final_pola_kalimat[0][-1]:
+        return True
+    elif "K" not in final_pola_kalimat[0][-1]:
+        return False
+
 
 def cek_kalimat(strinx):
-  strinx = strinx.split(" ") 
-  ar = array(len(strinx))
-  test = initiate(strinx, data, ar)
-  progressing(test, len(strinx))
-  progressing2(test, len(strinx))
-  return cek_baku(test)
+    strinx = strinx.split(" ") #list ["dia", "adalah", "orang", "baik"]
+    appendData()
+    ar = TableFilling(len(strinx))
+    test = DataMatching(strinx, data, ar)
+    progressingSPO(test, len(strinx))
+    progressingPolaKalimat(test, len(strinx))
+    return finalCheck(test)
+
+st.write("# Cek Tata :red[Bahasa] Indonesia dengan satu kali klik !")
 
 
-st.write("""
-# Pengecekan Kalimat Baku Indonesia
-Website ini digunakan untuk melakukan pengecekan
-terhadap kalimat yang diinput pada text box 
-kemudian akan dilakukan pengecekan apakah kalimat
-tersebut merupakan kalimat baku atau tidak        
-""")
+input = st.text_input("Ketik kalimat yang mau di cek", placeholder="ex : dia adalah orang baik")
+cek = st.button("Cek tata bahasa kalimat")
 
-input = st.text_input("Masukkan kalimat yang akan dicek")
-cek = st.button("Cek Kalimat")
-
-if cek :
-    if cek_kalimat(input) == 1:
-        st.success("Kalimat yang diinput adalah Kalimat baku")
+if cek:
+    if pro.cek_kalimat(input)== True:
+        st.success("Kalimat yang anda masukan adalah kalimat yang baku")
     else:
-        st.error("kalimat yang diinput adalah Kalimat tidak baku")
+        st.error("kalimat yang anda masukan bukan merupakan kalimat baku")
